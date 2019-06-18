@@ -6,13 +6,13 @@ def builddate
 SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 String currentdate = simpleDateFormat.format(new Date());
 println currentdate;
-def item = Jenkins.instance.getItemByFullName("/Team/Suraj/mainjob-pipline/job1")
+def item = Jenkins.instance.getItemByFullName("/Team/Suraj/mainjob-pipline/job1");
 if (item.getLastBuild()) {
-	ff=item.getLastSuccessfulBuild()
-	builddate=ff.getTime().format("dd-MM-yyyy")
+	ff=item.getLastSuccessfulBuild();
+	builddate=ff.getTime().format("dd-MM-yyyy");
 }
 else {
-	builddate=currentdate
+	builddate=currentdate;
 }
 println  'build date';
 println builddate;
