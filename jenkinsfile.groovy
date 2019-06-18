@@ -1,10 +1,26 @@
 import java.text.SimpleDateFormat
+import jenkins.model.Jenkins
+
 
 String pattern = "dd-MM-yyyy";
 def builddate
 SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 String currentdate = simpleDateFormat.format(new Date());
 println currentdate;
+
+def builddate(){
+	def item = Jenkins.instance.getItemByFullName("/Team/Suraj/mainjob-pipline/job1");
+	if (item.getLastBuild()) {
+		def ff=item.getLastSuccessfulBuild();
+		builddate=ff.getTime().format("dd-MM-yyyy");
+	}
+	else {
+		builddate=currentdate;
+	}
+}
+builddate();
+println builddate;
+
 pipeline {
 	agent {
 		label 'DETerminal'
@@ -22,17 +38,6 @@ pipeline {
 		}
 		stage ('Lastsuccess') {
 			steps{
-				script{
-					import jenkins.model.Jenkins
-					def item = Jenkins.instance.getItemByFullName("/Team/Suraj/mainjob-pipline/job1")
-					if (item.getLastBuild()) {
-							def ff=item.getLastSuccessfulBuild()
-						    builddate=ff.getTime().format("dd-MM-yyyy")
-					}
-					else {
-						builddate=currentdate
-					}
-				}
 				echo $[builddate]
 			}
 		}
