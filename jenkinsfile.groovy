@@ -39,9 +39,6 @@ pipeline {
 		}
 		stage ('Lastsuccess') {
 			steps{
-				script{
-					BUDATE()
-				}
 				echo $[builddate]
 				echo 'completed'
 				echo '0'
