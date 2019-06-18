@@ -7,6 +7,7 @@ buildrunning='false'
 SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 String currentdate = simpleDateFormat.format(new Date())-1;
 println currentdate;
+
 def LASTSUCCESSFULBUILD(){
 	def item = Jenkins.instance.getItemByFullName("/Team/Suraj/mainjob-pipline/job5");
 	if (item.getLastBuild()) {
@@ -34,6 +35,9 @@ pipeline {
 	agent {
 		label 'DETerminal'
 	}
+	 triggers {
+        cron('H/30 * * * *')
+    }
 	stages {
 		stage ('Lastbuildstatus') {
 			steps{
