@@ -43,6 +43,8 @@ pipeline {
 					BUDATE()
 				}
 				echo $[builddate]
+				echo 'completed'
+				echo 0
 			}
 		}
 		stage('DWHJOBS'){
