@@ -47,6 +47,13 @@ pipeline {
 				}
 			}
 		}
+		stage ('Lastsuccessjob5') {
+			steps{
+				script {
+					BUDATE()
+				}
+			}
+		}
 		stage('DWHJOBS'){
 			steps {
 				build '/Team/Suraj/mainjob-pipline/job5'
