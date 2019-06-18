@@ -3,7 +3,6 @@ import java.text.SimpleDateFormat
 
 String pattern = "dd-MM-yyyy";
 def builddate
-def  ff
 SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 String currentdate = simpleDateFormat.format(new Date());
 println currentdate;
@@ -20,6 +19,12 @@ pipeline {
 		stage('HBASE-DWHSRC') {
 			steps {
 				echo 'test1'
+			}
+		}
+		stage ('Lastsuccess') {
+			steps{
+				
+				echo 'ecdfdfd'
 			}
 		}
 		stage('DWHJOBS'){
