@@ -20,8 +20,6 @@ def BUDATE(){
 	println builddate;
 }
 
-BUDATE()
-
 pipeline {
 	agent {
 		label 'DETerminal'
@@ -42,6 +40,7 @@ pipeline {
 				script {
 					BUDATE()
 				}
+				println builddate
 			}
 		}
 		stage('DWHJOBS'){
