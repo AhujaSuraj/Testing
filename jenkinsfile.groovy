@@ -37,7 +37,7 @@ pipeline {
 			}
 		}
 		stage ('Lastsuccess') {
-			builddate()
+			script{builddate()}
 			steps{
 				echo $[builddate]
 			}
