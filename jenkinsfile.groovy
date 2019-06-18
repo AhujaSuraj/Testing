@@ -6,7 +6,6 @@ String pattern = "dd-MM-yyyy";
 builddate='sds'
 SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 String currentdate = simpleDateFormat.format(new Date());
-println currentdate;
 
 def BUDATE(){
 	def item = Jenkins.instance.getItemByFullName("/Team/Suraj/mainjob-pipline/job1");
@@ -17,7 +16,6 @@ def BUDATE(){
 	else {
 		builddate=currentdate;
 	}
-	println builddate;
 }
 
 pipeline {
@@ -35,15 +33,15 @@ pipeline {
 				echo 'test1'
 			}
 		}
-		stage ('Lastsuccess') {
+		stage ('Lastsuccessbuild of job1') {
 			steps{
 				script {
 					BUDATE()
 				}
-				println builddate
 			}
 		}
 		stage('DWHJOBS'){
+			when {builddate==currentdate}
 			steps {
 				println builddate
 				println currentdate
