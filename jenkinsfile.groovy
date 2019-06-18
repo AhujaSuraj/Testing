@@ -69,7 +69,7 @@ pipeline {
 		}
 		stage('DWHJOBS'){
 			when {
-				all{
+				allOf {
 					expression {
 						return builddate!= currentdate;
 					}
