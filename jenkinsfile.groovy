@@ -18,8 +18,8 @@ def builddate(){
 		builddate=currentdate;
 	}
 }
-builddate();
-println builddate;
+
+
 
 pipeline {
 	agent {
@@ -37,6 +37,7 @@ pipeline {
 			}
 		}
 		stage ('Lastsuccess') {
+			builddate()
 			steps{
 				echo $[builddate]
 			}
