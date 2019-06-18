@@ -22,7 +22,6 @@ def LASTSUCCESSFULBUILD(){
 def LASTBUILDRUNNING () {
 	def item = Jenkins.instance.getItemByFullName("/Team/Suraj/mainjob-pipline/job5");
 	if (item.lastBuild.building) {
-	{
 		buildrunning='true';
 	}	
 	else {
