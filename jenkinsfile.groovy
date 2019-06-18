@@ -1,4 +1,3 @@
-import jenkins.model.Jenkins
 import java.text.SimpleDateFormat
 
 String pattern = "dd-MM-yyyy";
@@ -24,6 +23,7 @@ pipeline {
 		stage ('Lastsuccess') {
 			steps{
 				script{
+					import jenkins.model.Jenkins
 					def item = Jenkins.instance.getItemByFullName("/Team/Suraj/mainjob-pipline/job1")
 					if (item.getLastBuild()) {
 							def ff=item.getLastSuccessfulBuild()
