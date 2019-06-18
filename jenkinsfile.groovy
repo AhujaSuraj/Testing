@@ -5,7 +5,7 @@ String pattern = "dd-MM-yyyy";
 builddate='sds'
 buildrunning='false'
 SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
-String currentdate = simpleDateFormat.format(new Date());
+String currentdate = simpleDateFormat.format(new Date())-1;
 println currentdate;
 def LASTSUCCESSFULBUILD(){
 	def item = Jenkins.instance.getItemByFullName("/Team/Suraj/mainjob-pipline/job5");
