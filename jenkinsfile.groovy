@@ -46,6 +46,7 @@ pipeline {
 		stage('DWHJOBS'){
 			steps {
 				println builddate
+				println currentdate
 			}
 		}
 	}
