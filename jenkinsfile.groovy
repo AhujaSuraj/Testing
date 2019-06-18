@@ -8,7 +8,7 @@ SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 String currentdate = simpleDateFormat.format(new Date());
 println currentdate;
 
-def builddate(){
+def BUDATE(){
 	def item = Jenkins.instance.getItemByFullName("/Team/Suraj/mainjob-pipline/job1");
 	if (item.getLastBuild()) {
 		def ff=item.getLastSuccessfulBuild();
@@ -20,7 +20,7 @@ def builddate(){
 	println builddate;
 }
 
-
+BUDATE()
 
 pipeline {
 	agent {
@@ -39,7 +39,9 @@ pipeline {
 		}
 		stage ('Lastsuccess') {
 			steps{
-				script{builddate()}
+				script{
+					BUDATE()
+				}
 				echo $[builddate]
 			}
 		}
