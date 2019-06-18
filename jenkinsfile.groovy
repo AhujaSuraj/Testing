@@ -17,6 +17,7 @@ def builddate(){
 	else {
 		builddate=currentdate;
 	}
+	println builddate;
 }
 
 
@@ -37,8 +38,8 @@ pipeline {
 			}
 		}
 		stage ('Lastsuccess') {
-			script{builddate()}
 			steps{
+				script{builddate()}
 				echo $[builddate]
 			}
 		}
