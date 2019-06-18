@@ -3,7 +3,7 @@ import jenkins.model.Jenkins
 
 
 String pattern = "dd-MM-yyyy";
-String builddate='sds'
+builddate='sds'
 SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 String currentdate = simpleDateFormat.format(new Date());
 println currentdate;
