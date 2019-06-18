@@ -33,7 +33,7 @@ pipeline {
 						builddate=currentdate
 					}
 				}
-				echo $[builddate}
+				echo $[builddate]
 			}
 		}
 		stage('DWHJOBS'){
