@@ -39,9 +39,9 @@ pipeline {
 		}
 		stage ('Lastsuccess') {
 			steps{
-				echo $[builddate]
-				echo 'completed'
-				echo '0'
+				script {
+					BUDATE()
+				}
 			}
 		}
 		stage('DWHJOBS'){
