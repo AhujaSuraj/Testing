@@ -56,6 +56,7 @@ pipeline {
 		}
 		stage('DWHJOBS'){
 			steps {
+				echo builddate
 				build '/Team/Suraj/mainjob-pipline/job5'
 			}
 		}
