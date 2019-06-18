@@ -3,10 +3,11 @@ import java.text.SimpleDateFormat
 
 String pattern = "dd-MM-yyyy";
 builddate='sds'
+buildrunning='false'
 SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
-String currentdate = simpleDateFormat.format(new Date())-1;
+String currentdate = simpleDateFormat.format(new Date());
 println currentdate;
-def BUDATE(){
+def LASTSUCCESSFULBUILD(){
 	def item = Jenkins.instance.getItemByFullName("/Team/Suraj/mainjob-pipline/job5");
 	if (item.getLastBuild()) {
 		def ff=item.getLastSuccessfulBuild();
@@ -15,14 +16,32 @@ def BUDATE(){
 	else {
 		builddate=currentdate;
 	}
+	println builddate;
 }
-
+def LASTBUILDRUNNING () {
+	def item = Jenkins.instance.getItemByFullName("/Team/Suraj/mainjob-pipline/job5");
+	if (item.lastBuild.building) {
+	{
+		buildrunning='true';
+	else {
+		buildrunning='false';
+	}
+	println buildrunning;
+}
 
 pipeline {
 	agent {
 		label 'DETerminal'
 	}
 	stages {
+		stage ('Lastbuildstatus') {
+			steps{
+				script {
+					LASTSUCCESSFULBUILD()
+					LASTBUILDRUNNING ()
+				}
+			}
+		}
 		stage('Build-AR-HBASE') {
 		 	steps {
 				build '/Team/Suraj/mainjob-pipline/job1'
@@ -47,21 +66,18 @@ pipeline {
 				}
 			}
 		}
-		stage ('Lastsuccessjob5') {
-			steps{
-				script {
-					BUDATE()
-				}
-			}
-		}
 		stage('DWHJOBS'){
 			when {
-				expression {
-					return builddate== currentdate;
-				}
+				all{
+					expression {
+						return builddate!= currentdate;
+					}
+					expression {
+						return buildrunning=='false'
+					}
+				}	
 			}	
 			steps {
-				echo builddate
 				build '/Team/Suraj/mainjob-pipline/job5'
 			}
 		}
