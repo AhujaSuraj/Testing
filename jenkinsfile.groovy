@@ -47,6 +47,7 @@ pipeline {
 		stage('DWHJOBS'){
 			steps {
 				echo 'test3'
+				echo $[builddate]
 			}
 		}
 	}
