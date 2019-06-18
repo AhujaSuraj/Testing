@@ -55,6 +55,11 @@ pipeline {
 			}
 		}
 		stage('DWHJOBS'){
+			when {
+				expression {
+					return builddate== currentdate;
+				}
+			}	
 			steps {
 				echo builddate
 				build '/Team/Suraj/mainjob-pipline/job5'
