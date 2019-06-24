@@ -5,62 +5,62 @@ pipeline {
 	stages{
 		stage('import'){
 			steps {
-				build '/Team/Suraj/DWHJobsJobs/Import'	
+				build '/Team/Suraj/DWH/Import'	
 			}
 		}
 		stage('Cleanup_DWHJobssrc'){
 			steps {
-				build '/Team/Suraj/DWHJobs/Cleanup_DWHJobssrc'
+				build '/Team/Suraj/DWH/Cleanup_DWHJobssrc'
 			}
 		}
 		stage('TransformDataDerive'){
 			steps {
-				build '/Team/Suraj/DWHJobs/TransformDataDerive'
+				build '/Team/Suraj/DWH/TransformDataDerive'
 			}
 		}
 		stage('LoadDataDWHJobs'){
 			steps {
-				build '/Team/Suraj/DWHJobs/LoadDataDWHJobs'
+				build '/Team/Suraj/DWH/LoadDataDWHJobs'
 			}
 		}
 		stage('QA_DWH'){
 			steps {
-				build '/Team/Suraj/DWHJobs/QA_DWH'
+				build '/Team/Suraj/DWH/QA_DWH'
 			}
 		}
 		stage('SelligentUpload'){
 			steps {
-				build '/Team/Suraj/DWHJobs/SelligentUpload'
+				build '/Team/Suraj/DWH/SelligentUpload'
 			}
 		}
 		stage('UpdateAnalyticalAL'){
 			steps {
-				build '/Team/Suraj/DWHJobs/UpdateAnalyticalAL'
+				build '/Team/Suraj/DWH/UpdateAnalyticalAL'
 			}
 		}
 		stage('QAAL'){
 			steps {
-				build '/Team/Suraj/DWHJobs/QAAL'
+				build '/Team/Suraj/DWH/QAAL'
 			}
 		}
 		stage('ProcessBissDataTabular'){
 			steps {
-				build '/Team/Suraj/DWHJobs/	ProcessBissDataTabular'
+				build '/Team/Suraj/DWH/	ProcessBissDataTabular'
 			}
 		}
 		stage('QABissTabular'){
 			steps {
-				build '/Team/Suraj/DWHJobs/QABissTabular'
+				build '/Team/Suraj/DWH/QABissTabular'
 			}
 		}
 		stage('LoadDAData'){
 			steps {
-				build '/Team/Suraj/DWHJobs/LoadDAData'
+				build '/Team/Suraj/DWH/LoadDAData'
 			}
 		}
 		stage('ExportDAData'){
 			steps {
-				build '/Team/Suraj/DWHJobs/ExportDAData'
+				build '/Team/Suraj/DWH/ExportDAData'
 			}
 		}
 	}	
