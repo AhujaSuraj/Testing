@@ -6,8 +6,8 @@ buildimportrunning='false';
 buildcleanuprunning='false';
 buildselfrunning='false';
 buildpipelinrunning='false';
-buildDailyETLdate='01-01-1991'
-buildDailyETLRunning='false
+buildDailyETLdate='01-01-1991';
+buildDailyETLRunning='false';
 String pattern = "dd-MM-yyyy";
 
 SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
