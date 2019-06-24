@@ -29,7 +29,7 @@ def LASTSUCCESSFULBUILD(jobname){
 	if (item.getLastBuild()) {
 		def ff=item.getLastSuccessfulBuild();
 		if(ff) {
-		builddate=ff.getTime().format("dd-MM-yyyy");
+			builddate=ff.getTime().format("dd-MM-yyyy");
 		}
 		else {
 			builddate=currentdate-1;
