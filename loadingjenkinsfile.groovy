@@ -155,6 +155,9 @@ pipeline {
 				if (buildDailyETLdate!=currentdate && buildDailyETLRunning=='false') {
 					build job: '/Team/Suraj/Pipelinejobs/DailyETL'
 				}
+				else {
+					echo "daily etl already running or its already done for today"
+				}
 			}
 		}
 	}
