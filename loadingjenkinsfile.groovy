@@ -76,7 +76,7 @@ pipeline {
 						}
 						stage ('LoadDataDomainA') {
 							when {
-								allof{
+								allOf{
 									expression {return buildimportrunning=='false'}
 									expression {return buildcleanuprunning=='false'}
 									expression {return buildselfrunning=='false'}
@@ -103,7 +103,7 @@ pipeline {
 						}
 						stage ('LoadDataDomainB') {
 							when {
-								allof{
+								allOf{
 									expression { return buildimportrunning=='false'}
 									expression {return buildselfrunning=='false'}
 									expression {return buildpipelinrunning=='false'}
@@ -129,7 +129,7 @@ pipeline {
 						}
 						stage ('LoadDataDomainC') {
 							when {
-								allof {
+								allOf {
 									expression {return buildimportrunning=='false'}
 									expression {return buildselfrunning=='false'}
 									expression {return buildpipelinrunning=='false'}
