@@ -2,9 +2,12 @@ import jenkins.model.Jenkins
 import java.text.SimpleDateFormat
 
 buildrunning='false';
-buildimportrunning='false';
-buildcleanuprunning='false';
-buildselfrunning='false';
+buildimportArunning='false';
+buildcleanupArunning='false';
+buildimportBrunning='false';
+buildcleanupBrunning='false';
+buildimportCrunning='false';
+buildcleanupCrunning='false';
 buildDailyETLdate='01-01-1991';
 buildDailyETLRunning='false';
 String datepattern = "dd-MM-yyyy";
@@ -56,18 +59,7 @@ pipeline {
 		label 'DETerminal'
 	}
 	stages {
-		stage ('LastBuildStatusARHBASE') {
-			steps{
-				script{ 
-					LASTBUILDRUNNING ('/Team/Suraj/NapkinJobs/job1')
-					buildselfrunning=buildrunning
-				}
-			}
-		}
 		stage('Build-AR-HBASE') {
-			when {
-				expression{return buildselfrunning=='false'}
-			}
 		 	steps {
 				build '/Team/Suraj/NapkinJobs/job1'
 			}
@@ -80,20 +72,17 @@ pipeline {
 							steps{
 								script{ 
 									LASTBUILDRUNNING ('/Team/Suraj/DWH/import')
-									buildimportrunning=buildrunning
+									buildimportArunning=buildrunning
 									LASTBUILDRUNNING ('/Team/Suraj/DWH/Cleanup_dwhsrc')
-									buildcleanuprunning=buildrunning
-									LASTBUILDRUNNING ('/Team/Suraj/NapkinJobs/job2')
-									buildselfrunning=buildrunning
+									buildcleanupArunning=buildrunning
 								}
 							}
 						}
 						stage ('LoadDataDomainA') {
 							when {
 								allOf{
-									expression {return buildimportrunning=='false'}
-									expression {return buildcleanuprunning=='false'}
-									expression {return buildselfrunning=='false'}
+									expression {return buildimportArunning=='false'}
+									expression {return buildcleanupArunning=='false'}
 								}
 							}
 							steps {
@@ -108,17 +97,14 @@ pipeline {
 							steps{
 								script{ 
 									LASTBUILDRUNNING ('/Team/Suraj/DWH/QA_DWH')
-									buildimportrunning=buildrunning
-									LASTBUILDRUNNING ('/Team/Suraj/NapkinJobs/job3')
-									buildselfrunning=buildrunning
+									buildimportBrunning=buildrunning
 								}
 							}
 						}
 						stage ('LoadDataDomainB') {
 							when {
 								allOf{
-									expression { return buildimportrunning=='false'}
-									expression {return buildselfrunning=='false'}
+									expression { return buildimportBrunning=='false'}
 								}
 							}
 							steps {
@@ -133,17 +119,15 @@ pipeline {
 							steps{
 								script{ 
 									LASTBUILDRUNNING ('/Team/Suraj/DWH/ETLJackpot')
-									buildimportrunning=buildrunning
-									LASTBUILDRUNNING ('/Team/Suraj/NapkinJobs/job4')
-									buildselfrunning=buildrunning
+									buildimportCrunning=buildrunning
+
 								}
 							}
 						}
 						stage ('LoadDataDomainC') {
 							when {
 								allOf {
-									expression {return buildimportrunning=='false'}
-									expression {return buildselfrunning=='false'}
+									expression {return buildimportCrunning=='false'}
 								}	
 							}
 							steps {
