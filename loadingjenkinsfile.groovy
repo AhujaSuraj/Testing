@@ -10,7 +10,7 @@ buildDailyETLRunning='false';
 String pattern = "dd-MM-yyyy";
 
 SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
-String currentdate = simpleDateFormat.format(new Date())-1;
+String currentdate = simpleDateFormat.format(new Date());
 println currentdate;
 
 def LASTSUCCESSFULBUILD(jobname){
@@ -27,9 +27,14 @@ def LASTSUCCESSFULBUILD(jobname){
 
 def LASTBUILDRUNNING (jobname) {
 	def item = Jenkins.instance.getItemByFullName(jobname);
-	if (item.lastBuild.building) {
-		buildrunning='true';
-	}	
+	if (item.getLastBuild()) {
+		if (item.lastBuild.building) {
+			buildrunning='true';
+		}	
+		else {
+			buildrunning='false';
+		}
+	}
 	else {
 		buildrunning='false';
 	}
