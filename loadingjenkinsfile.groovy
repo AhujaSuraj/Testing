@@ -44,7 +44,7 @@ pipeline {
 		stage ('LastBuildStatusARHBASE') {
 			steps{
 				script{ 
-					LASTBUILDRUNNING ('/Team/Suraj/Pipelinejobs/job1')
+					LASTBUILDRUNNING ('/Team/Suraj/NapkinJobs/job1')
 					buildselfrunning=buildrunning
 				}
 			}
