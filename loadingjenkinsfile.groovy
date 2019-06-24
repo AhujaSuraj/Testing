@@ -5,7 +5,6 @@ buildrunning='false';
 buildimportrunning='false';
 buildcleanuprunning='false';
 buildselfrunning='false';
-buildpipelinrunning='false';
 buildDailyETLdate='01-01-1991';
 buildDailyETLRunning='false';
 String pattern = "dd-MM-yyyy";
@@ -45,14 +44,14 @@ pipeline {
 		stage ('LastBuildStatusARHBASE') {
 			steps{
 				script{ 
-					LASTBUILDRUNNING ('/Team/Suraj/Pipelinejobs/ARToHBASEToDWHSRC')
-					buildpipelinrunning=buildrunning
+					LASTBUILDRUNNING ('/Team/Suraj/Pipelinejobs/job1')
+					buildselfrunning=buildrunning
 				}
 			}
 		}
 		stage('Build-AR-HBASE') {
 			when {
-				expression{return buildpipelinrunning=='false'}
+				expression{return buildselfrunning=='false'}
 			}
 		 	steps {
 				build '/Team/Suraj/NapkinJobs/job1'
@@ -80,7 +79,6 @@ pipeline {
 									expression {return buildimportrunning=='false'}
 									expression {return buildcleanuprunning=='false'}
 									expression {return buildselfrunning=='false'}
-									expression {return buildpipelinrunning=='false'}
 								}
 							}
 							steps {
@@ -106,7 +104,6 @@ pipeline {
 								allOf{
 									expression { return buildimportrunning=='false'}
 									expression {return buildselfrunning=='false'}
-									expression {return buildpipelinrunning=='false'}
 								}
 							}
 							steps {
@@ -132,7 +129,6 @@ pipeline {
 								allOf {
 									expression {return buildimportrunning=='false'}
 									expression {return buildselfrunning=='false'}
-									expression {return buildpipelinrunning=='false'}
 								}	
 							}
 							steps {
