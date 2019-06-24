@@ -10,7 +10,7 @@ pipeline {
 		}
 		stage('Cleanup_DWHJobssrc'){
 			steps {
-				build '/Team/Suraj/DWH/Cleanup_DWH'
+				build '/Team/Suraj/DWH/Cleanup_dwhsrc'
 			}
 		}
 		stage('TransformDataDerive'){
