@@ -20,7 +20,7 @@ pipeline {
 		}
 		stage('LoadDataDWHJobs'){
 			steps {
-				build '/Team/Suraj/DWH/LoadDataDWHJobs'
+				build '/Team/Suraj/DWH/LoadDataDWH'
 			}
 		}
 		stage('QA_DWH'){
