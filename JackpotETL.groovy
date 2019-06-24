@@ -4,7 +4,7 @@ pipeline {
 	}
 	stages{
 		stage('ETLJackpot'){
-			step {
+			steps {
 				build '/Team/Suraj/DWHJobsJobs/ETLJackpot'	
 			}
 		}
