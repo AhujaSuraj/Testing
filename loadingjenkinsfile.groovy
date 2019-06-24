@@ -41,9 +41,6 @@ pipeline {
 	agent {
 		label 'DETerminal'
 	}
-	 triggers {
-        cron('H/30 * * * *')
-    }
 	stages {
 		stage ('LastBuildStatusARHBASE') {
 			steps{
@@ -54,8 +51,8 @@ pipeline {
 			}
 		}
 		stage('Build-AR-HBASE') {
-			WHEN {
-				expression{return buildselfrunning=='false'}
+			when {
+				expression{return buildpipelinrunning=='false'}
 			}
 		 	steps {
 				build '/Team/Suraj/NapkinJobs/job1'
@@ -78,7 +75,7 @@ pipeline {
 							}
 						}
 						stage {'LoadDataDomainA'} {
-							WHEN {
+							when {
 								allof{
 									expression {return buildimportrunning=='false'}
 									expression {return buildcleanuprunning=='false'}
@@ -105,7 +102,7 @@ pipeline {
 							}
 						}
 						stage {'LoadDataDomainB'} {
-							WHEN {
+							when {
 								allof{
 									expression { return buildimportrunning=='false'}
 									expression {return buildselfrunning=='false'}
@@ -131,7 +128,7 @@ pipeline {
 							}
 						}
 						stage {'LoadDataDomainC'} {
-							WHEN {
+							when {
 								allof {
 									expression {return buildimportrunning=='false'}
 									expression {return buildselfrunning=='false'}
