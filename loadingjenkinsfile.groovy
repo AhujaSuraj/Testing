@@ -153,7 +153,7 @@ pipeline {
 				LASTSUCCESSFULBUILD('/Team/Suraj/Pipelinejobs/DailyETL')
 				buildDailyETLdate=builddate
 				if (buildDailyETLdate!=currentdate && buildDailyETLRunning=='false') {
-					build '/Team/Suraj/Pipelinejobs/DailyETL'
+					build job: '/Team/Suraj/Pipelinejobs/DailyETL'
 				}
 			}
 		}
