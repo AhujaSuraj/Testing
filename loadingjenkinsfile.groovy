@@ -10,7 +10,7 @@ buildDailyETLRunning='false';
 String pattern = "dd-MM-yyyy";
 
 SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
-String currentdate = simpleDateFormat.format(new Date());
+currentdate = simpleDateFormat.format(new Date());
 println currentdate;
 
 def LASTSUCCESSFULBUILD(jobname){
