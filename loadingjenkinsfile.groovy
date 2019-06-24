@@ -8,7 +8,7 @@ buildselfrunning='false';
 buildDailyETLdate='01-01-1991';
 buildDailyETLRunning='false';
 String datepattern = "dd-MM-yyyy";
-String timepattern=""HH:MM";
+String timepattern="HH:MM";
 
 //current date
 SimpleDateFormat simpleDateFormat = new SimpleDateFormat(datepattern);
