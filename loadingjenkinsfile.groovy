@@ -7,12 +7,20 @@ buildcleanuprunning='false';
 buildselfrunning='false';
 buildDailyETLdate='01-01-1991';
 buildDailyETLRunning='false';
-String pattern = "dd-MM-yyyy";
+String datepattern = "dd-MM-yyyy";
+String timepattern=""HH:MM";
 
-SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
-currentdate = simpleDateFormat.format(new Date());
+//current date
+SimpleDateFormat simpleDateFormat = new SimpleDateFormat(datepattern);
+currentdate = simpleDateFormat.format(new Date())-1;
 println currentdate;
 
+//currenttime
+SimpleDateFormat simpleTimeFormat = new SimpleDateFormat(timepattern);
+currenttime=simpleTimeFormat.format(new Date());
+println currenttime;
+
+//last build success date
 def LASTSUCCESSFULBUILD(jobname){
 	def item = Jenkins.instance.getItemByFullName(jobname);
 	if (item.getLastBuild()) {
@@ -25,6 +33,7 @@ def LASTSUCCESSFULBUILD(jobname){
 	println builddate;
 }
 
+//last build still running or not
 def LASTBUILDRUNNING (jobname) {
 	def item = Jenkins.instance.getItemByFullName(jobname);
 	if (item.getLastBuild()) {
@@ -41,6 +50,7 @@ def LASTBUILDRUNNING (jobname) {
 	println buildrunning;
 }
 
+//pipeline start
 pipeline {
 	agent {
 		label 'DETerminal'
@@ -148,6 +158,7 @@ pipeline {
 	post {
 		success {
 			script {
+				//daily etl pipelin calling
 				LASTBUILDRUNNING ('/Team/Suraj/Pipelinejobs/DailyETL')
 				buildDailyETLRunning=buildrunning
 				LASTSUCCESSFULBUILD('/Team/Suraj/Pipelinejobs/DailyETL')
@@ -158,6 +169,14 @@ pipeline {
 				else {
 					echo "daily etl already running or its already done for today"
 				}
+				//regualr etljackpot calling
+				if (currenttime=="11:00" || currenttime=="12:15" ) {
+					build job: '/Team/Suraj/Pipelinejobs/JackpotETL'
+				}
+				else {
+					echo "jackpot etl running time not yet"
+				}
+				
 			}
 		}
 	}
