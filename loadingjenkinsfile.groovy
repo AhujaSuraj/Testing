@@ -20,7 +20,7 @@ println currentdate;
 
 //currenttime
 SimpleDateFormat simpleTimeFormat = new SimpleDateFormat(timepattern);
-currenttime=simpleTimeFormat.format(new Date());
+currenttime=simpleTimeFormat.format(new Date())-1;
 println currenttime;
 
 //last build success date
@@ -31,7 +31,7 @@ def LASTSUCCESSFULBUILD(jobname){
 		builddate=ff.getTime().format("dd-MM-yyyy");
 	}
 	else {
-		builddate=currentdate-1;
+		builddate=currentdate;
 	}
 	println builddate;
 }
