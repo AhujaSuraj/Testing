@@ -12,7 +12,7 @@ String timepattern="HH:MM";
 
 //current date
 SimpleDateFormat simpleDateFormat = new SimpleDateFormat(datepattern);
-currentdate = simpleDateFormat.format(new Date())-1;
+currentdate = simpleDateFormat.format(new Date());
 println currentdate;
 
 //currenttime
@@ -28,7 +28,7 @@ def LASTSUCCESSFULBUILD(jobname){
 		builddate=ff.getTime().format("dd-MM-yyyy");
 	}
 	else {
-		builddate=currentdate;
+		builddate=currentdate-1;
 	}
 	println builddate;
 }
