@@ -45,7 +45,7 @@ pipeline {
 		}
 		stage('ProcessBissDataTabular'){
 			steps {
-				build '/Team/Suraj/DWH/	ProcessBissDataTabular'
+				build '/Team/Suraj/DWH/ProcessBissDataTabular' 
 			}
 		}
 		stage('QABissTabular'){
