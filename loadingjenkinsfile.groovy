@@ -32,7 +32,7 @@ def LASTSUCCESSFULBUILD(jobname){
 			builddate=ff.getTime().format("dd-MM-yyyy");
 		}
 		else {
-			builddate=currentdate-1;
+			builddate=currentdate;
 		}
 	}
 	else {
