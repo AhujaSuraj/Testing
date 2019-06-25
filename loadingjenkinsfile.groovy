@@ -64,11 +64,13 @@ pipeline {
 		label 'DETerminal'
 	}
 	stages {
+		///ar to hbase
 		stage('Build-AR-HBASE') {
 		 	steps {
 				build '/Team/Suraj/NapkinJobs/job1'
 			}
 		}
+		//hbase to dwhsrc
 		stage('HBASE-DWHSRC') {
 			parallel {
 				stage('HBASE-DWHSRC-A') {
@@ -140,6 +142,17 @@ pipeline {
 							}
 						}
 					}
+					post {
+						success {
+							//regualr etljackpot calling
+							if (currenttime=="11:00" || currenttime=="12:15" ) {
+								build job: '/Team/Suraj/Pipelinejobs/JackpotETL'
+							}
+							else {
+								echo "jackpot etl running time not yet"
+							}
+						}
+					}
 				}
 			}
 		}
@@ -158,14 +171,6 @@ pipeline {
 				else {
 					echo "daily etl already running or its already done for today"
 				}
-				//regualr etljackpot calling
-				if (currenttime=="11:00" || currenttime=="12:15" ) {
-					build job: '/Team/Suraj/Pipelinejobs/JackpotETL'
-				}
-				else {
-					echo "jackpot etl running time not yet"
-				}
-				
 			}
 		}
 	}
