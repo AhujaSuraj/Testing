@@ -27,12 +27,13 @@ println currenttime;
 def LASTSUCCESSFULBUILD(jobname){
 	def item = Jenkins.instance.getItemByFullName(jobname);
 	if (item.getLastBuild()) {
-		def ff=item.getLastSuccessfulBuild();
+		//def ff=item.getLastSuccessfulBuild();
+		def ff=item.getLastBuild();
 		if(ff) {
 			builddate=ff.getTime().format("dd-MM-yyyy");
 		}
 		else {
-			builddate=currentdate;
+			builddate=currentdate-1;
 		}
 	}
 	else {
