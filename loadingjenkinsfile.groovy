@@ -145,12 +145,14 @@ pipeline {
 					post {
 						success {
 							//regualr etljackpot calling
-							if (currenttime=="11:00" || currenttime=="12:15" ) {
-								build job: '/Team/Suraj/Pipelinejobs/JackpotETL'
-							}
-							else {
-								echo "jackpot etl running time not yet"
-							}
+							script{
+								if (currenttime=="11:00" || currenttime=="12:15" ) {
+									build job: '/Team/Suraj/Pipelinejobs/JackpotETL'
+								}
+								else {
+									echo "jackpot etl running time not yet"
+								}
+							}	
 						}
 					}
 				}
