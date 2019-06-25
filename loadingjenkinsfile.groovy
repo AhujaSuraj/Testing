@@ -142,36 +142,38 @@ pipeline {
 							}
 						}
 					}
-					post {
-						success {
-							//regualr etljackpot calling
-							script{
-								if (currenttime>="06:00" || currenttime=="12:15" ) {
-									build job: '/Team/Suraj/Pipelinejobs/JackpotETL'
-								}
-								else {
-									echo "jackpot etl running time not yet"
-								}
-							}	
-						}
-					}
 				}
 			}
 		}
-	}
-	post {
-		success {
-			script {
-				//daily etl pipelin calling
-				LASTBUILDRUNNING ('/Team/Suraj/Pipelinejobs/DailyETL')
-				buildDailyETLRunning=buildrunning
-				LASTSUCCESSFULBUILD('/Team/Suraj/Pipelinejobs/DailyETL')
-				buildDailyETLdate=builddate
-				if (buildDailyETLdate!=currentdate && buildDailyETLRunning=='false') {
-					build job: '/Team/Suraj/Pipelinejobs/DailyETL'
+		stage ('DWH Pipeline jobs') {
+			parallel {
+				stage ('Daily ETL') {
+					steps {
+						script {
+							LASTBUILDRUNNING ('/Team/Suraj/Pipelinejobs/DailyETL')
+							buildDailyETLRunning=buildrunning
+							LASTSUCCESSFULBUILD('/Team/Suraj/Pipelinejobs/DailyETL')
+							buildDailyETLdate=builddate
+							if (buildDailyETLdate!=currentdate && buildDailyETLRunning=='false') {
+								build job: '/Team/Suraj/Pipelinejobs/DailyETL'
+							}
+							else {
+								echo "daily etl already running or its already done for today"
+							}
+						}
+					}
 				}
-				else {
-					echo "daily etl already running or its already done for today"
+				stage ('Jackpot ETL') {
+					steps {
+						script {
+							if (currenttime>="06:00" || currenttime=="12:15" ) {
+								build job: '/Team/Suraj/Pipelinejobs/JackpotETL'
+							}
+							else {
+								echo "jackpot etl running time not yet"
+							}
+						}
+					}
 				}
 			}
 		}
