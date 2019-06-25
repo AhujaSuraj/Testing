@@ -23,9 +23,9 @@ pipeline {
 				build '/Team/Suraj/DWH/LoadDataDWH'
 			}
 		}
-		stage('QA_DWH'){
+		stage('QADWH Pipeline'){
 			steps {
-				build '/Team/Suraj/DWH/QA_DWH'
+				build '/Team/Suraj/Pipelinejobs/QADWH'
 			}
 		}
 		stage('SelligentUpload'){
