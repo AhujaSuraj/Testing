@@ -146,7 +146,7 @@ pipeline {
 						success {
 							//regualr etljackpot calling
 							script{
-								if (currenttime=="11:00" || currenttime=="12:15" ) {
+								if (currenttime>="06:00" || currenttime=="12:15" ) {
 									build job: '/Team/Suraj/Pipelinejobs/JackpotETL'
 								}
 								else {
